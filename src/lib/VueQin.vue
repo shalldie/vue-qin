@@ -32,7 +32,8 @@ export default {
         return {
             activeIndex: 0, // 当前操作的item的索引
             pageYBase: 0, // 鼠标在移动item前初始y坐标
-            pageYMove: 0  // 鼠标在移动item时候的y坐标
+            pageYMove: 0, // 鼠标在移动item时候的y坐标
+            animations: [] // 所有span的动画
         };
     },
     computed: {
@@ -50,6 +51,12 @@ export default {
         },
         itemLeave(ex) {
 
+        },
+        invokeAnimation() {  // 所有span开始动画
+            // 禁止之前的所有动画
+            for (let i = 0, len = this.animations.length; i < len; i++) {
+                this.animations[i].stop();
+            }
         }
     }
 }
