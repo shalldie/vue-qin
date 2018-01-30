@@ -22,7 +22,7 @@ const createLintingRule = () => ({
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: utils.ifProduction() ? './src/lib/index.js' : './src/main.js'
+    'vue-qin': utils.ifProduction() ? './src/lib/index.js' : './src/main.js'
   },
   output: {
     path: config.build.assetsRoot,

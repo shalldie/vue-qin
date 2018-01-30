@@ -1,7 +1,8 @@
 {
   "name": "vue-qin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vue 的琴弦文字插件。",
+  "main": "dist/vue-qin.js",
   "author": "shalldie",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
