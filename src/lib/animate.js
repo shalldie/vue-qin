@@ -71,7 +71,7 @@ export default class Animate {
      * @param {(num:number)=>void} endFn 结束的回调
      * @memberof Animate
      */
-    constructor(from, to, duration, stepFn, endFn) {
+    constructor(from, to, duration, stepFn = function () { }, endFn = function () { }) {
         this._from = from;
         this._to = to;
         this._duration = duration;
@@ -86,14 +86,14 @@ export default class Animate {
      * 
      * @memberof Animate
      */
-    _stepFn = function () { }
+    _stepFn;
 
     /**
      * 结束的回调
      * 
      * @memberof Animate
      */
-    _endFn = function () { }
+    _endFn;
 
     /**
      * 每一步的动作
@@ -119,11 +119,12 @@ export default class Animate {
         // 该步的结果
         let result = ElasticEaseOut(t, this._from, this._to - this._from, this._duration);
 
-        if (ifEnd) {
+        this._stepFn(result);
+
+        if (ifEnd) {  //  结束则额外回调
             this._endFn(result);
         }
-        else {
-            this._stepFn(result);
+        else {  // 否则递归
             setTimeout(this._step.bind(this), 17);
         }
     }

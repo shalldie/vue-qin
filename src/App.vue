@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <vue-qin content="lalalallalalalala"></vue-qin>
+      <vue-qin content="对象语法十分直观——看着非常像 CSS，但其实是一个 JavaScript 对象。"></vue-qin>
   </div>
 </template>
 
