@@ -8,7 +8,6 @@ Vue.config.productionTip = false
 import VueQin from './lib';
 Vue.use(VueQin);
 
-import './animate.css';
 
 /* eslint-disable no-new */
 new Vue({
