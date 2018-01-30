@@ -51,15 +51,12 @@ export default {
         },
         itemLeave(ex) {
 
-<<<<<<< HEAD
-=======
         },
         invokeAnimation() {  // 所有span开始动画
             // 禁止之前的所有动画
             for (let i = 0, len = this.animations.length; i < len; i++) {
                 this.animations[i].stop();
             }
->>>>>>> 36f64b97edab6bde9db151e889a5f1be22cdd463
         }
     }
 }
