@@ -123,6 +123,7 @@ export default class Animate {
 
         if (ifEnd) {  //  结束则额外回调
             this._endFn(result);
+            this.state = 2;
         }
         else {  // 否则递归
             setTimeout(this._step.bind(this), 17);
@@ -130,6 +131,13 @@ export default class Animate {
     }
 
     //#endregion
+
+    /**
+     * 动画状态 0-waiting 1-pending 2-done/disabled
+     * 
+     * @memberof Animate
+     */
+    state = 0;
 
     //#region public methods 公共方法
 
@@ -140,6 +148,7 @@ export default class Animate {
      * @memberof Animate
      */
     start() {
+        this.state = 1;
         this._step();
         return this;
     }
@@ -151,6 +160,7 @@ export default class Animate {
      * @memberof Animate
      */
     stop() {
+        this.state = 2;
         this._enable = false;
         return this;
     }
