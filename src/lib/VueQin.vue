@@ -1,5 +1,8 @@
 <template>
-<div class="vue-qin" @mouseenter="wrapEnter" @mousemove="wrapMove">
+<div class="vue-qin" 
+    @mouseenter="wrapEnter" 
+    @mousemove="wrapMove"
+    @mouseleave="invokeAnimation">
     <span 
         v-for="(item,index) in messages" 
         :key="index" 
@@ -44,10 +47,6 @@ export default {
             return this.content.split('');
         }
     },
-    created() {
-        console.log(this.$refs);
-        window.refs = this.$refs;
-    },
     methods: {
         wrapEnter(ex) {
             this.pageYBase = ex.pageY;
@@ -60,6 +59,8 @@ export default {
 
             // 偏移量
             let diffY = ex.pageY - this.pageYBase;
+
+            if (diffY == 0) return;
 
             for (let i = 0, len = this.content.length; i < len; i++) {
                 let diff = Math.abs(diffY) - Math.abs(this.activeIndex - i) * this.recline;
@@ -83,7 +84,10 @@ export default {
         },
         invokeAnimation() {  // 所有span开始动画
             // 禁止之前的所有动画
-            this.animations.forEach(item => item.stop());
+            // this.animations.forEach(item => item.stop());
+
+            // 如果正在动画，返回
+            if (this.animations.some(item => item.state == 1)) return;
 
             // 重置并开始动画
             this.animations = this.messages.map((k, i) => {
@@ -97,8 +101,18 @@ export default {
         },
         setOffsetStyle(index, num) { // 设置元素偏移
             this.offsets.splice(index, 1, num); // 记录偏移值
-            let ele = this.$refs['item' + index];
-            ele[0].style.transform = `translate3d(0,${num}px,0)`;
+            let ele = this.$refs['item' + index][0];
+
+            let styleContent = [
+                'msTransform',
+                'OTransform',
+                'MozTransform',
+                'webkitTransform',
+                'transform']
+                .map(name => `${name}:translate3d(0,${num}px,0);`)
+                .join('');
+
+            ele.style.cssText = styleContent;
         }
     }
 }

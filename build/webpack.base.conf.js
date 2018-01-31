@@ -27,7 +27,8 @@ module.exports = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    libraryTarget: utils.ifProduction ? undefined : 'umd',
+    library: 'VueQin',
+    libraryTarget: utils.ifProduction() ? 'umd' : undefined,
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
