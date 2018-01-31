@@ -45,11 +45,11 @@ new Vue({
 
 ## Properties
 
-|   Name   |   Type   | Default |                                          Description                                          |
-| :------- | :------: | :-----: | :-------------------------------------------------------------------------------------------- |
-| content  | `String` |  `''`   | The content you want to show.<br>要显示的文字。                                               |
-| duration | `Number` |   500   | The animation duration.<br>每次弹动对动画时长。                                               |
-| recline  | `Number` |   0.6   | Animation's wave distance between two chars.<br>动画时候2个字符间的波动距离。值越大波动越大。 |
-| offset   | `Number` |   22    | Max offset of each char move.<br>字符最大的可移动距离。                                       |
+|   Name   |   Type   | Default |                                          Description                                     |
+| :------- | :------: | :-----: | :--------------------------------------------------------------------------------------- |
+| content  | `String` |  `''`   | The content you want to show.<br>要显示的文字。                                             |
+| duration | `Number` |   500   | The animation duration.<br>每次弹动对动画时长。                                              |
+| recline  | `Number` |   0.6   | Animation's wave distance between two chars.<br>动画时候2个字符间的波动距离。值越大波动越大。    |
+| offset   | `Number` |   22    | Max offset of each char move.<br>字符最大的可移动距离。                                      |
 
 # Enjoy it! :D
