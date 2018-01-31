@@ -41,6 +41,9 @@ new Vue({
 ></vue-qin>
 ```
     
+## Support
+    IE9 and IE9+
+
 # Api
 
 ## Properties

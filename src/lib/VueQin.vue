@@ -38,6 +38,7 @@ export default {
         return {
             activeIndex: 0, // 当前操作的item的索引
             pageYBase: 0, // 鼠标在移动item前初始y坐标
+            inWrap: false,  // 是否在容器内。 用于兼容ie和edge。 有时候mousemove先于mouseenter触发
             offsets: [], // 所有span的偏移值 Array<number>
             animations: [] // 所有span的动画 Array<Animate>
         };
@@ -50,8 +51,14 @@ export default {
     methods: {
         wrapEnter(ex) {
             this.pageYBase = ex.pageY;
+            this.inWrap = true;
         },
         wrapMove(ex) {
+            if (!this.inWrap) {
+                this.wrapEnter(ex);
+                return;
+            }
+
             let ifAnimating = this.animations.some(item => item.state === 1);
             if (ifAnimating) {
                 return;
@@ -89,6 +96,8 @@ export default {
             // 如果正在动画，返回
             if (this.animations.some(item => item.state == 1)) return;
 
+            this.inWrap = false;
+
             // 重置并开始动画
             this.animations = this.messages.map((k, i) => {
                 return new Animate(
@@ -103,13 +112,8 @@ export default {
             this.offsets.splice(index, 1, num); // 记录偏移值
             let ele = this.$refs['item' + index][0];
 
-            let styleContent = [
-                'msTransform',
-                'OTransform',
-                'MozTransform',
-                'webkitTransform',
-                'transform']
-                .map(name => `${name}:translate3d(0,${num}px,0);`)
+            let styleContent = ['-ms-', '-o-', '-moz-', '-webkit-', '']   // 浏览器前缀
+                .map(prev => `${prev}transform:translateY(${num}px);${prev}transform:translate3d(0,${num}px,0);`)  // ie9不支持3d
                 .join('');
 
             ele.style.cssText = styleContent;
