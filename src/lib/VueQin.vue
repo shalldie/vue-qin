@@ -6,7 +6,7 @@
     <span 
         v-for="(item,index) in messages" 
         :key="index" 
-        :ref="'item' + index"
+        ref="item"
         @mouseenter="itemEnter($event,index)"
     >{{item}}</span>
 </div>
@@ -110,7 +110,7 @@ export default {
         },
         setOffsetStyle(index, num) { // 设置元素偏移
             this.offsets.splice(index, 1, num); // 记录偏移值
-            let ele = this.$refs['item' + index][0];
+            let ele = this.$refs['item'][index];
 
             let styleContent = ['-ms-', '-o-', '-moz-', '-webkit-', '']   // 浏览器前缀
                 .map(prev => `${prev}transform:translateY(${num}px);${prev}transform:translate3d(0,${num}px,0);`)  // ie9不支持3d

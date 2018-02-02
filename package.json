@@ -1,6 +1,6 @@
 {
   "name": "vue-qin",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Vue 的琴弦文字插件。",
   "main": "dist/vue-qin.js",
   "author": "shalldie",
