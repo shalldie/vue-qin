@@ -15,8 +15,8 @@
 ```js
 import Vue from 'vue';
 import VueQin from 'vue-qin';
-// let VueQin = window.VueQin.default;  // window
-// let VueQin = require('vue-qin').default;  // commonjs
+// let VueQin = window.VueQin;  // window
+// let VueQin = require('vue-qin');  // commonjs
 ```
 
 ```js
@@ -33,14 +33,14 @@ new Vue({
 ```
 
 ```js
-<vue-qin 
+<vue-qin
     :content="'This is the content to show'"
     :duration="500"
     :recline="0.6"
     :offset="22"
 ></vue-qin>
 ```
-    
+
 ## Support
     IE9 and IE9+
 
